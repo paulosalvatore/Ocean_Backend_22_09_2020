@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 
 const mensagens = [
     "Essa é uma mensagem",
-    "Essa é outra mensagem"
+    "Essa é outra mensagem",
 ];
 
 // Read All
@@ -30,23 +30,45 @@ app.post('/mensagens', (req, res) => {
     // Obtendo a mensagem que foi recebida através do body da requisição
     const mensagem = req.body.mensagem;
 
+    // Obtendo o ID da nova mensagem
+    const id = mensagens.length;
+
     // Insiro a mensagem na lista de mensagens
     mensagens.push(mensagem);
 
-    const id = mensagens.length - 1;
-
-    // Exibido o ID da mensagem, que no caso é o índice que ela foi adicionada
-    res.send(`Mensagem criada. ID: ${id}.`);
+    // Envio a mensagem de sucesso, informando o ID obtido
+    res.send(`A mensagem com o texto '${mensagem}' foi criada com sucesso. ID: ${id}.`);
 });
 
 // Read Single
 app.get('/mensagens/:id', (req, res) => {
-    res.send('Exibe uma mensagem selecionada pelo ID que foi informado.');
+    // Pega o ID através dos parâmetros da requisição
+    const id = req.params.id;
+
+    // Acessamos a mensagem de acordo com o ID informado
+    const mensagem = mensagens[id];
+
+    res.json(mensagem);
+    
+    /*
+    // Referência, passando também o ID em um objeto de mensagem
+    res.json({ id, mensagem });
+    */
 });
 
 // Update
 app.put('/mensagens/:id', (req, res) => {
-    res.send('Atualiza uma mensagem selecionada pelo ID que foi informado.');
+    // Acessa o ID pelos parâmetros
+    const id = req.params.id;
+
+    // Obtém a mensagem que foi enviada pelo usuário no corpo (body) da requisição
+    const mensagem = req.body.mensagem;
+
+    // Atualiza a mensagem direto na lista de mensagens, acessando pelo ID que foi informado
+    mensagens[id] = mensagem;
+
+    // Envia uma mensagem de sucesso.
+    res.send(`Mensagem com o ID ${id} foi atualizada com sucesso.`);
 });
 
 // Delete
