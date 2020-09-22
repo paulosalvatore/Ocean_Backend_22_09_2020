@@ -11,11 +11,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/mensagens",
+					"raw": "{{API_URL}}/mensagens",
 					"host": [
-						"localhost"
+						"{{API_URL}}"
 					],
-					"port": "3000",
 					"path": [
 						"mensagens"
 					]
@@ -30,7 +29,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"mensagem\": \"Samsung Ocean\"\r\n}",
+					"raw": "{\r\n    \"texto\": \"Samsung Ocean\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -38,11 +37,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/mensagens",
+					"raw": "{{API_URL}}/mensagens",
 					"host": [
-						"localhost"
+						"{{API_URL}}"
 					],
-					"port": "3000",
 					"path": [
 						"mensagens"
 					]
@@ -57,7 +55,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"mensagem\": \"Mensagem editada\"\r\n}",
+					"raw": "{\r\n    \"texto\": \"Mensagem editada\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -65,11 +63,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/mensagens/1",
+					"raw": "{{API_URL}}/mensagens/1",
 					"host": [
-						"localhost"
+						"{{API_URL}}"
 					],
-					"port": "3000",
 					"path": [
 						"mensagens",
 						"1"
@@ -84,14 +81,31 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/mensagens/0",
+					"raw": "{{API_URL}}/mensagens/0",
 					"host": [
-						"localhost"
+						"{{API_URL}}"
 					],
-					"port": "3000",
 					"path": [
 						"mensagens",
 						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remover mensagem por ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/mensagens/1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"mensagens",
+						"1"
 					]
 				}
 			},
