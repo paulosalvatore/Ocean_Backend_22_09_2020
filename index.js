@@ -16,8 +16,14 @@ app.get('/', (req, res) => {
 // CRUD -> Criar, Ler (Ler tudo e ler individualmente), atualizar e remover
 
 const mensagens = [
-    "Essa é uma mensagem",
-    "Essa é outra mensagem",
+    {
+        id: 0,
+        texto: "Essa é uma mensagem"
+    },
+    {
+        id: 1,
+        texto: "Essa é outra mensagem"
+    },
 ];
 
 // Read All
@@ -28,16 +34,19 @@ app.get('/mensagens', (req, res) => {
 // Create
 app.post('/mensagens', (req, res) => {
     // Obtendo a mensagem que foi recebida através do body da requisição
-    const mensagem = req.body.mensagem;
+    const mensagem = req.body;
 
     // Obtendo o ID da nova mensagem
     const id = mensagens.length;
+
+    // Atualiza o objeto de mensagem enviado pela requisição com o ID que foi calculado
+    mensagem.id = id;
 
     // Insiro a mensagem na lista de mensagens
     mensagens.push(mensagem);
 
     // Envio a mensagem de sucesso, informando o ID obtido
-    res.send(`A mensagem com o texto '${mensagem}' foi criada com sucesso. ID: ${id}.`);
+    res.send(`A mensagem com o texto '${mensagem.texto}' foi criada com sucesso. ID: ${id}.`);
 });
 
 // Read Single
