@@ -73,7 +73,11 @@ app.put('/mensagens/:id', (req, res) => {
 
 // Delete
 app.delete('/mensagens/:id', (req, res) => {
-    res.send('Remove uma mensagem selecionada pelo ID que foi informado.');
+    const id = req.params.id;
+
+    delete mensagens[id];
+
+    res.send(`Mensagem com o ID ${id} foi removida com sucesso.`);
 });
 
 app.listen(port, () => {
