@@ -28,7 +28,7 @@ const mensagens = [
 
 // Read All
 app.get('/mensagens', (req, res) => {
-    res.json(mensagens);
+    res.json(mensagens.filter(Boolean));
 });
 
 // Create
@@ -71,10 +71,10 @@ app.put('/mensagens/:id', (req, res) => {
     const id = req.params.id;
 
     // Obtém a mensagem que foi enviada pelo usuário no corpo (body) da requisição
-    const mensagem = req.body.mensagem;
+    const novoTexto = req.body.texto;
 
     // Atualiza a mensagem direto na lista de mensagens, acessando pelo ID que foi informado
-    mensagens[id] = mensagem;
+    mensagens[id].texto = novoTexto;
 
     // Envia uma mensagem de sucesso.
     res.send(`Mensagem com o ID ${id} foi atualizada com sucesso.`);
